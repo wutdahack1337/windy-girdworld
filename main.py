@@ -9,21 +9,30 @@ random_agent = RandomAgent()
 
 for episode in range(1):
     env.reset()
-
-    timestep = 0
+    step_counter = 0
 
     terminate = False
     while terminate is False:
         env.render()
 
         action = random_agent.select_action()
-        print(f"[INFO] timestep {timestep}")
-
         terminate = env.step(action)
+
+        print(f"[INFO] step_counter: {step_counter}")
+        step_counter += 1
 
         time.sleep(0.1)
 
-        timestep += 1
-
     env.render()
     print("[INFO] finish!!!")
+
+# terminate = False
+# while terminate is False:
+#     env.render()
+
+#     action = input("action (w/s/a/d):")
+
+#     terminate = env.step(action)
+
+# env.render()
+# print("[INFO] finish!!!")

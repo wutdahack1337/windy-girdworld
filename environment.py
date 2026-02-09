@@ -7,19 +7,20 @@ class Environment:
         self.agent_position = (3, 0)
         self.goal_position = (3, 7)
 
-        self.windy_columns = [3, 4, 5, 6, 7, 8]
-
+        self.windy_1_columns = [3, 4, 5, 8]
+        self.windy_2_columns = [6, 7]
 
     def reset(self):
         # start position
         self.agent_position = (3, 0)
         return self.agent_position
 
-
     def step(self, action):
         windy = 0
-        if self.agent_position[1] in self.windy_columns:
+        if self.agent_position[1] in self.windy_1_columns:
             windy = 1
+        elif self.agent_position[1] in self.windy_2_columns:
+            windy = 2
 
         terminate = False
 
@@ -39,26 +40,18 @@ class Environment:
             terminate = True
 
         return terminate
-        
 
     def render(self):
         for i in range(self.n):
             for j in range(self.m):
                 if (i, j) == self.agent_position:
                     print('A',end='')
-                    continue
-
-                if (i, j) == self.goal_position:
+                elif (i, j) == self.goal_position:
                     print('G', end='')
-                    continue
-
-                if j in self.windy_columns:
-                    print('^',end='')
-                    continue
-
-                print('.', end='')
-
+                elif j in self.windy_1_columns:
+                    print("^",end='')
+                elif j in self.windy_2_columns:
+                    print('?',end='')
+                else:
+                    print('.', end='')
             print()
-
-        
-
