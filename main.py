@@ -5,34 +5,32 @@ from agent import RandomAgent
 
 
 env = Env()
-random_agent = RandomAgent()
 
-for episode in range(1):
-    env.reset()
-    step_counter = 0
-
+mode = input("mode (human/random): ")
+if mode == "human":
     terminate = False
     while terminate is False:
         env.render()
-
-        action = random_agent.select_action()
+        action = input("action (w/s/a/d): ")
         terminate = env.step(action)
 
-        print(f"[INFO] step_counter: {step_counter}")
-        step_counter += 1
+elif mode == "random":
+    random_agent = RandomAgent()
+    for episode in range(1):
+        env.reset()
+        step_counter = 0
 
-        time.sleep(0.1)
+        terminate = False
+        while terminate is False:
+            env.render()
 
-    env.render()
-    print("[INFO] finish!!!")
+            action = random_agent.select_action()
+            terminate = env.step(action)
 
-# terminate = False
-# while terminate is False:
-#     env.render()
+            print(f"[INFO] step_counter: {step_counter}")
+            step_counter += 1
 
-#     action = input("action (w/s/a/d):")
+            time.sleep(0.025)
 
-#     terminate = env.step(action)
-
-# env.render()
-# print("[INFO] finish!!!")
+env.render()
+print("[INFO] finish!!!")
