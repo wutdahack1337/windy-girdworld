@@ -53,7 +53,7 @@ class Environment:
                     continue
 
                 if j in self.windy_columns:
-                    print('~',end='')
+                    print('^',end='')
                     continue
 
                 print('.', end='')

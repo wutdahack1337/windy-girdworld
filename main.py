@@ -1,14 +1,29 @@
+import time
+
 from environment import Environment as Env
+from agent import RandomAgent
 
 
 env = Env()
-env.reset()
+random_agent = RandomAgent()
 
-terminate = False
-while terminate is False:
+for episode in range(1):
+    env.reset()
+
+    timestep = 0
+
+    terminate = False
+    while terminate is False:
+        env.render()
+
+        action = random_agent.select_action()
+        print(f"[INFO] timestep {timestep}")
+
+        terminate = env.step(action)
+
+        time.sleep(0.1)
+
+        timestep += 1
+
     env.render()
-    action = input("action (w/s/a/d):")
-    terminate = env.step(action)
-
-env.render()
-print("[INFO] you did it!!!")
+    print("[INFO] finish!!!")
