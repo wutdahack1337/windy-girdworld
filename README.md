@@ -6,7 +6,7 @@ Windy Gridworld
 
 > This is a standard gridwolrd, with start and goal states, but with one difference: there is a crosswind running upward through the middle of the grid.   
 > The actions are the standard four - up, down, right, and left.   
-> But in the middle region the resultant next states are shifted upward by a "wind", the strength of which varies from column to column. The strength of the wind is given below each column, in number of cells shifted upward. 
+> But in the middle region the resultant next states are shifted upward by a "wind", the strength of which varies from column to column. The strength of the wind is given below each column, in number of cells shifted upward.  
 > This is an undiscounted episodic task, with constant rewards of -1 until the goal state is reached.   
 
 ```

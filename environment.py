@@ -24,16 +24,16 @@ class Environment:
 
         terminate = False
 
-        if action == 'w':
+        if   action == 'w' or action == 0:
             self.agent_position = ( max(0,        self.agent_position[0] - 1 - windy) , self.agent_position[1] )
-        elif action == 's':
+        elif action == 's' or action == 1:
             self.agent_position = ( min(self.n-1, self.agent_position[0] + 1 - windy) , self.agent_position[1] )
-        elif action == 'a':
+        elif action == 'a' or action == 2:
             self.agent_position = ( max(0,        self.agent_position[0] - windy), max(0,        self.agent_position[1] - 1) )
-        elif action == 'd':
+        elif action == 'd' or action == 3:
             self.agent_position = ( max(0,        self.agent_position[0] - windy), min(self.m-1, self.agent_position[1] + 1) )
         else:
-            print("[WARN] only w/s/a/d")
+            print("[WARN] only w/s/a/d or 0/1/2/3")
             return terminate
 
         if self.agent_position == self.goal_position:
