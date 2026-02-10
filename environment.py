@@ -33,7 +33,7 @@ class Environment:
         elif action == 'd':
             self.agent_position = ( max(0,        self.agent_position[0] - windy), min(self.m-1, self.agent_position[1] + 1) )
         else:
-            print("[WARN] just w, s, a, d")
+            print("[WARN] only w/s/a/d")
             return terminate
 
         if self.agent_position == self.goal_position:
@@ -41,6 +41,7 @@ class Environment:
 
         return terminate
 
+    # helper
     def render(self):
         for i in range(self.n):
             for j in range(self.m):
@@ -55,3 +56,6 @@ class Environment:
                 else:
                     print('.', end='')
             print()
+
+    def state(self, location):
+        return location[0]*self.m + location[1]

@@ -1,12 +1,13 @@
 import time
 
 from environment import Environment as Env
-from agent import RandomAgent
+from agent_random import RandomAgent
+from agent_sarsa import EpsilonGreedySarsaAgent
 
 
 env = Env()
 
-mode = input("mode (human/random): ")
+mode = input("mode (human/random/sarsa): ")
 if mode == "human":
     terminate = False
     while terminate is False:
@@ -15,7 +16,7 @@ if mode == "human":
         terminate = env.step(action)
 
 elif mode == "random":
-    random_agent = RandomAgent()
+    agent = RandomAgent()
     for episode in range(1):
         env.reset()
         step_counter = 0
@@ -24,13 +25,21 @@ elif mode == "random":
         while terminate is False:
             env.render()
 
-            action = random_agent.select_action()
+            action = agent.select_action()
             terminate = env.step(action)
 
             print(f"[INFO] step_counter: {step_counter}")
             step_counter += 1
 
             time.sleep(0.025)
+
+elif mode == "sarsa":
+    agent = EpsilonGreedySarsaAgent(7*10, 4, 0.1, 0.5)
+
+    raise NotImplementedError
+else:
+    print("[WARN] only human/random/sarsa")
+    return
 
 env.render()
 print("[INFO] finish!!!")
